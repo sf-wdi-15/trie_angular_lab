@@ -14,12 +14,14 @@
     
     <form ng-submit="addContact()">
       <div class="well">
-        <h1 class="main_title">Add A New Contact</h1>
-        <h3 class="glyphicon glyphicon-user"><input class="contact_info" type="text" ng-model="newContact.name" placeholder="Name"></h3><br>
-        <h3 class="glyphicon glyphicon-phone"><input class="contact_info" type="text" ng-model="newContact.cell" placeholder="Cell Number"></h3><br>
-        <h3 class="glyphicon glyphicon-phone-alt"><input class="contact_info" type="text" ng-model="newContact.home" placeholder="Home Number"></h3><br>
-        <h3 class="glyphicon glyphicon-home"><input class="contact_info" type="text" ng-model="newContact.address" placeholder="Address"></h3><br>
-        <button class="btn btn-default" type="submit">Add Contact</button>
+        <div>
+          <h1 class="main_title">Add A New Contact</h1>
+          <h3 class="glyphicon glyphicon-user"><input class="contact_info" type="text" ng-model="newContact.name" placeholder="Name"></h3><br>
+          <h3 class="glyphicon glyphicon-phone"><input class="contact_info" type="text" ng-model="newContact.cell" placeholder="Cell Number"></h3><br>
+          <h3 class="glyphicon glyphicon-phone-alt"><input class="contact_info" type="text" ng-model="newContact.home" placeholder="Home Number"></h3><br>
+          <h3 class="glyphicon glyphicon-home"><input class="contact_info" type="text" ng-model="newContact.address" placeholder="Address"></h3><br>
+          <button class="btn btn-default" type="submit">Add Contact</button>
+        </div>
       </div>
     </form>
     <div class="search_contact">
@@ -30,7 +32,7 @@
         <h4 class="contact_cell">Cell Phone: {{contact.cell}}<h4>
         <h4 class="contact_home">Home Phone: {{contact.home}}</h4>
         <h4 class="contact_address">Address: {{contact.address}}</h4>
-        <button ng-click="updateContact()">Update</button>
+        <button ng-click="startEdit()">Edit</button>
         <button ng-click="deleteContact()">Delete</button>
       </div>
 

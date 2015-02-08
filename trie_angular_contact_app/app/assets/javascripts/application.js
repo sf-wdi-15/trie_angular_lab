@@ -30,6 +30,8 @@ ContactApp.controller("ContactsCtrl", ["$scope", "$http", function($scope, $http
     });
 
   $scope.contacts = [];
+
+
   $scope.addContact = function () {
     console.log($scope.newContact);
 
@@ -41,20 +43,26 @@ ContactApp.controller("ContactsCtrl", ["$scope", "$http", function($scope, $http
       });
   };
 
-  $scope.updateContact = function(){
-    console.log("updating", this.contact);
-    console.log($http);
-    $http.patch('/contacts/' + this.contact.id + ".json", {contact: this.contact})
-      .success(function (data){
-        console.log("updated");
-      });
-  };
+  $scope.startEdit = function (){
+    $scope.newContact = this.contact;
+  }
+
+  // $scope.updateContact = function(){
+  //   console.log("updating", this.contact);
+  //   console.log($http);
+  //   $http.patch('/contacts/' + this.contact.id + ".json", {contact: this.contact})
+  //     .success(function (data){
+  //       console.log("updated");
+  //     });
+  // };
 
   $scope.deleteContact = function(){
     console.log("deleting", this.contact);
     console.log($http);
+    var index = this.$index
     $http.delete('/contacts/' + this.contact.id + ".json", {contact: this.contact})
       .success(function (data){
+        $scope.contacts.splice(index,1)
         console.log("deleted");
       });
   };

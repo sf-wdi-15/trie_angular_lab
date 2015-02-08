@@ -30,6 +30,9 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
+    respond_to do |format|
+      format.json {render nothing: true}
+    end
   end
 
 end
