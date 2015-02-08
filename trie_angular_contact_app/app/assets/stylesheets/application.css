@@ -12,4 +12,32 @@
  *
  *= require_tree .
  *= require_self
+ *= require twitter/bootstrap
  */
+.contact {
+  background-color: gray;
+  width: 48%;
+  float: left;
+  margin:10px 9px 10px 9px;
+}
+
+.contact_info {
+  background-color: black;
+  display: block;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+}
+
+.main_title {
+  font-family: 'Playfair Display SC', serif;
+  text-align: center;
+}
+
+.search_con {
+  background-color: black;
+  display: block;
+  margin: 0 auto;
+  color: white;
+}
+

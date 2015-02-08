@@ -19,7 +19,7 @@ var ContactApp = angular.module("ContactApp", []);
 
 ContactApp.config(["$httpProvider", function($httpProvider){
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('name', 'cell', 'home', 'address')
-});
+}]);
 
 ContactApp.controller("ContactsCtrl", ["$scope", "$http", function($scope, $http){
   
@@ -47,6 +47,15 @@ ContactApp.controller("ContactsCtrl", ["$scope", "$http", function($scope, $http
     $http.patch('/contacts/' + this.contact.id + ".json", {contact: this.contact})
       .success(function (data){
         console.log("updated");
+      });
+  };
+
+  $scope.deleteContact = function(){
+    console.log("deleting", this.contact);
+    console.log($http);
+    $http.delete('/contacts/' + this.contact.id + ".json", {contact: this.contact})
+      .success(function (data){
+        console.log("deleted");
       });
   };
 }]);
