@@ -1,10 +1,68 @@
 (function () {
-  
+  "use strict";
+
+  function Trie(){
+    this.characters = {};
+  };
+
+  Trie.prototype.learn = function(word, index){
+    index = index || 0;
+    var letter = word[index];
+    if (index < word.length) {
+      // recursive condition
+      if (this.characters[letter] === undefined) {
+        this.characters[letter] = new Trie();
+      }
+      // recursively learn at next letter position
+      this.characters[letter].learn(word, index + 1);
+    } else {
+      // terminal condition
+      this.isWord  = true;
+    }
+    return this;
+  };
+
+  Trie.prototype.getWords = function(words, currentWord){
+    words = words || [];
+    currentWord = currentWord || "";
+
+    if (this.isWord) {
+      words.push(currentWord);
+    }
+    for (var character in this.characters){
+      this.characters[character].getWords(words, currentWord + character);
+    }
+    return words;
+  };
+
+  Trie.prototype.find = function(word, index){
+    index = index || 0;
+    if (index === word.length) {
+      return this;
+    }
+
+    if (this.characters[word[index]] !== undefined && index < word.length) {
+        return this.characters[word[index]].find(word, index + 1);
+    }
+  };
+
+  Trie.prototype.autoComplete = function(prefix){
+    var foundNode = this.find(prefix);
+    var words = [];
+    if(foundNode) {
+      foundNode.getWords(words, prefix);
+    }
+    return words;
+  };
+
+
   var ContactsCtrls = angular.module("ContactsCtrls", []);
 
   ContactsCtrls.controller("ContactsCtrl", ["$scope", "$http", function ($scope, $http) {
     // define contacts
     $scope.contacts = [];
+
+    $scope.contactNames = new Trie();
 
     // get all contacts
     $http.get("/contacts.json").
@@ -14,6 +72,9 @@
       success(function (data) {
         console.log(data)
         $scope.contacts = data;
+        for (var i = 0; i < $scope.contacts.length; i+=1) {
+          $scope.contactNames.learn($scope.contacts[i].name);
+        };
       });
 
     // create a contact
@@ -24,6 +85,7 @@
         }).
         success(function (data) {
           $scope.contacts.push(data);
+          $scope.contactNames.learn(data.name);
           $scope.newContact = {};
         });
     };
