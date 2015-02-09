@@ -99,6 +99,7 @@
         }). 
         success(function () {
           $scope.contacts.splice(that.$index, 1);
+          $scope.contactNames.find(contact.name).isWord = false;
         });
     };
 
@@ -117,6 +118,21 @@
           that.editing = false;
         });
     };
+
+    $scope.getSuggestions = function () {
+      $scope.searchResults = $scope.contactNames.autoComplete($scope.searchName);
+    };
+
+    $scope.findContact = function () {
+      var name = this.name;
+      for (var i = 0; i < $scope.contacts.length; i++) {
+        if ($scope.contacts[i].name === name) {
+          $scope.foundContact = $scope.contacts[i];
+          return undefined;
+        }
+      };
+    };
+
 
   }]);
 })();

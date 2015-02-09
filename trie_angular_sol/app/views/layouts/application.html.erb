@@ -29,6 +29,28 @@
       </form>
     </div>
 
+    <div>
+      <input type="text" ng-model="searchName" ng-change="getSuggestions();foundContact=null;" placeholder="Search Names">
+    </div>
+
+    <div ng-repeat="name in searchResults" ng-click="findContact()">
+      {{name}}
+    </div>
+     <div>
+      <div class="foundContact-name">
+        {{foundContact.name}}
+      </div>
+      <div class="foundContact-cell">
+        {{foundContact.cell}}
+      </div>
+      <div class="foundContact-home">
+        {{foundContact.home}}
+      </div>
+      <div class="foundContact-address">
+          {{foundContact.address}}
+      </div>
+    </div>
+
     <div ng-repeat="contact in contacts track by $index">
 
       <form ng-submit="updateContact()" ng-show="editing">
