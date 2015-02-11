@@ -21,7 +21,7 @@
   margin:10px 9px 10px 9px;
 }
 
-.contact_info {
+#contact_info {
   background-color: black;
   display: block;
   margin: 0 auto;
@@ -39,4 +39,7 @@
   display: block;
   margin: 0 auto;
   color: white;
+}
+.contact_form  form {
+  margin: 0 auto;
 }

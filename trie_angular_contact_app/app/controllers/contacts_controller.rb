@@ -22,7 +22,9 @@ class ContactsController < ApplicationController
     contact_params = params.require(:contact).permit(:name, :cell, :home, :address)
     @contact = Contact.find(params[:id])
     @contact.update(contact_params)
-    respond_with Contact.update(params[:id], params[:contact])
+    respond_to do |format|
+     format.json {render json: @contact}
+   end
   end
 
   def destroy
