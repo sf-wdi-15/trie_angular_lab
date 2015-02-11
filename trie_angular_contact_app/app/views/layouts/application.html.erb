@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrieAngularContactApp</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:400,700italic' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="ContactsApp">
+  
+  <div class='container' ng-controller="ContactsCtrl">
+    
+    <div class="well row">
+      <div class="col-xs-offset-4 col-xs-4">
+        <form ng-submit="handleForm()">
+          <h1 class="main_title">Add A New Contact</h1>
+          <h3 class="glyphicon glyphicon-user"><input class="form-control" id="contact_info" type="text" ng-model="newContact.name" placeholder="Name"></h3><br>
+          <h3 class="glyphicon glyphicon-phone"><input class="form-control" id="contact_info" type="text" ng-model="newContact.cell" placeholder="Cell Number"></h3><br>
+          <h3 class="glyphicon glyphicon-phone-alt"><input class="form-control" id="contact_info" type="text" ng-model="newContact.home" placeholder="Home Number"></h3><br>
+          <h3 class="glyphicon glyphicon-home"><input class="form-control" id="contact_info" type="text" ng-model="newContact.address" placeholder="Address"></h3><br>
+          <button class="btn btn-default" id="button" type="submit">Add Contact</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="search_contact">
+      <input class="search_con" placeholder="Search Contacts", ng-model="searchContact">
+    </div>
+
+    <div class="contact" col-sm-3 ng-repeat="contact in contacts | filter:searchContact">
+      <h1 class="contact_name">Name: {{contact.name}}</h1>
+      <h4 class="contact_cell">Cell Phone: {{contact.cell}}<h4>
+      <h4 class="contact_home">Home Phone: {{contact.home}}</h4>
+      <h4 class="contact_address">Address: {{contact.address}}</h4>
+      <button ng-click="startEdit()">Edit</button>
+      <button ng-click="delete()">Delete</button>
+    </div>
+
+  </div>
+
+
+</body>
+</html>
