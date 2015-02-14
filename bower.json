@@ -1,0 +1,18 @@
+{
+  "name": "angular_trie_lab",
+  "version": "0.0.0",
+  "homepage": "https://github.com/el-besto/trie_angular_lab",
+  "authors": [
+    "Angelo Cisneros <a.e.cisneros@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
+}
