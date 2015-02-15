@@ -7,6 +7,69 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="ContactsApp">
+  
+  <!-- START ContactsCtrl -->
+  <div ng-controller="ContactsCtrl">
+    
+    <!-- START createContact form -->
+    <div> 
+        <form ng-submit="createContact()">
+          <div><input    type="text" ng-model="newContact.name"    placeholder="name"></div>
+          <div><input    type="text" ng-model="newContact.cell"    placeholder="cell"></div>
+          <div><input    type="text" ng-model="newContact.home"    placeholder="home"></div>
+          <div><textarea type="text" ng-model="newContact.address" placeholder="address"></textarea></div>
+          <button>Save Contact</button>
+        </form>
+    </div>
+    <!-- END createContact form -->
+
+
+    <!-- START searchName -->
+    <div>
+      <input type="text" ng-model="searchName" 
+                         ng-change="getSuggestions();foundContact=null;" 
+                         placeholder="Search Names"
+      >
+    </div>
+    <!-- END searchName -->
+
+
+    <!-- START findContact() -->
+    <div ng-repeat="name in searchResults" ng-click="findContact()">
+      {{name}}
+    </div>
+    <div>
+        <div class="foundContact-name"    >{{foundContact.name}}   </div>
+        <div class="foundContact-cell"    >{{foundContact.cell}}   </div>
+        <div class="foundContact-home"    >{{foundContact.home}}   </div>
+        <div class="foundContact-address" >{{foundContact.address}}</div>
+    </div>
+    <!-- END findContact() -->
+
+
+    <!-- START contact list -->
+    <div ng-repeat="contact in contacts track by $index">
+      <form ng-submit="updateContact()" ng-show="editing">
+        <div><input    type="text" ng-model="contact.name"    placeholder="name"></div>
+        <div><input    type="text" ng-model="contact.cell"    placeholder="cell"></div>
+        <div><input    type="text" ng-model="contact.home"    placeholder="home"></div>
+        <div><textarea type="text" ng-model="contact.address" placeholder="address"></textarea></div>
+        <div><button>Update Contact</button></div>
+      </form>
+
+      <div ng-hide="editing">
+        <div class="contact-name">{{contact.name}}</div>
+        <div class="contact-cell">{{contact.cell}}</div>
+        <div class="contact-home">{{contact.home}}</div>
+        <div class="contact-address">{{contact.address}}</div>
+        <div><button ng-click="delete()">Delete</button><button ng-click="edit()">Edit</button></div>
+      </div>
+    </div>
+    <!-- END contact list -->
+
+
+  </div>
+  <!-- END ContactsCtrl -->
 
 </body>
 </html>
