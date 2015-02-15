@@ -16,4 +16,5 @@
 
 //= require angular/angular.js
 //= require angular-ui-router/release/angular-ui-router.min.js
+//= require angular-bootstrap/ui-bootstrap.js
 //= require_tree .
