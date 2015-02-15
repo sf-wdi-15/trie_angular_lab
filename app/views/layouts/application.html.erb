@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AngularTrieLab</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body ng-app="ContactsApp">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-1 col-xs-10">
+
+
+        <!-- START ContactsCtrl -->
+        <div ng-controller="ContactsCtrl">
+          
+          <!-- START createContact form -->
+          <div> 
+              <form ng-submit="createContact()" role="form">
+                <legend>Contact Form</legend>
+                <fieldset>
+                <div class="form-group">
+                  <input    type="text" ng-model="newContact.name"    placeholder="name"    class="form-control">
+                </div>
+                <div class="form-group">
+                  <input    type="text" ng-model="newContact.cell"    placeholder="cell"    class="form-control">
+                </div>
+                <div class="form-group">
+                  <input    type="text" ng-model="newContact.home"    placeholder="home"    class="form-control">
+                </div>
+                <div class="form-group">
+                  <textarea type="text" ng-model="newContact.address" placeholder="address" class="form-control"></textarea>
+                </div>
+                <button class="btn btn-primary">Save Contact</button>
+                </fieldset>
+              </form>
+          </div>
+          <!-- END createContact form -->
+
+      <hr>
+
+          <!-- START searchName -->
+          <div>
+            <input type="text" ng-model="searchName" ng-change="getSuggestions(); foundContact=null;" placeholder="Search Names">
+          </div>
+          <!-- END searchName -->
+
+
+          <!-- START findContact() -->
+          <div ng-repeat="name in searchResults" ng-click="findContact()">
+            {{name}}
+          </div>
+          <div>
+              <div class="foundContact-name"    >{{foundContact.name}}   </div>
+              <div class="foundContact-cell"    >{{foundContact.cell}}   </div>
+              <div class="foundContact-home"    >{{foundContact.home}}   </div>
+              <div class="foundContact-address" >{{foundContact.address}}</div>
+          </div>
+          <!-- END findContact() -->
+
+      <hr>
+
+          <!-- START contact list -->
+          <div ng-repeat="contact in contacts track by $index">
+
+            <form ng-submit="updateContact()" ng-show="editing" role="form">
+            <legend>Edit Contact</legend>
+              <fieldset>
+              <div class="form-group">
+                <input    type="text" ng-model="contact.name"    placeholder="name"    class="form-control">
+              </div>
+              <div class="form-group">
+                <input    type="text" ng-model="contact.cell"    placeholder="cell"    class="form-control">
+              </div>
+              <div class="form-group">
+                <input    type="text" ng-model="contact.home"    placeholder="home"    class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea type="text" ng-model="contact.address" placeholder="address" class="form-control"></textarea>
+              </div>
+              <div><button class="btn btn-success">Update Contact</button></div>
+              </fieldset>
+              <hr>
+            </form>
+
+            <div ng-hide="editing">
+              <div class="panel panel-primary">
+                <div class="panel-heading"><div class="contact-name">{{contact.name}}</div></div>
+                <div class="panel-body">
+                  <div class="contact-cell">{{contact.cell}}</div>
+                  <div class="contact-home">{{contact.home}}</div>
+                  <div class="contact-address">{{contact.address}}</div>
+                  <div>
+                    <button ng-click="delete()" class="btn btn-danger" >Delete</button>
+                    <button ng-click="edit()"   class="btn btn-primary">Edit</button>
+                  </div>
+                </div>
+                <hr>
+              </div>
+
+            </div>
+
+          </div>
+          <!-- END contact list -->
+
+
+        </div>
+        <!-- END ContactsCtrl -->
+
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
