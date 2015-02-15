@@ -89,7 +89,7 @@
     $scope.createContact = function () {
       $http.post('/contacts.json', { contact: $scope.newContact })
            .error(function () {
-              console.log(arguments);
+              $scope.formError = true;
            })
            .success(function (data) {
               $scope.contacts.push(data);
@@ -135,7 +135,8 @@
 
     //get suggestions
     $scope.getSuggestions = function () {
-      $scope.searchResult = $scope.contactNames.autoComplete($scope.searchName);
+      // console.log($scope.searchResults);
+      $scope.searchResults = $scope.contactNames.autoComplete($scope.searchName);
     };
 
     // find contact
