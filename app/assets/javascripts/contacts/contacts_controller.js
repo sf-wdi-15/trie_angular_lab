@@ -32,7 +32,7 @@
     if (this.isWord) {
       words.push(currentWord);
     }
-    for (var characters in this.characters) {
+    for (var character in this.characters) {
       this.characters[character].getWords(words, currentWord + character);
     }
     return words;
@@ -56,7 +56,7 @@
       foundNode.getWords(words, prefix);
     }
     return words;
-  }
+  };
 
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -68,7 +68,6 @@
   ContactsCtrls.controller('ContactsCtrl', ['$scope', '$http', function ($scope, $http) {
     //define Contacts
     $scope.contacts = [];
-    $scope.hi = "HI";
 
     $scope.contactNames = new Trie ();
 

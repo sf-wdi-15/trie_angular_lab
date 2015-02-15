@@ -23,13 +23,11 @@
     </div>
     <!-- END createContact form -->
 
+<hr>
 
     <!-- START searchName -->
     <div>
-      <input type="text" ng-model="searchName" 
-                         ng-change="getSuggestions();foundContact=null;" 
-                         placeholder="Search Names"
-      >
+      <input type="text" ng-model="searchName" ng-change="getSuggestions(); foundContact=null;" placeholder="Search Names">
     </div>
     <!-- END searchName -->
 
@@ -46,6 +44,7 @@
     </div>
     <!-- END findContact() -->
 
+<hr>
 
     <!-- START contact list -->
     <div ng-repeat="contact in contacts track by $index">
